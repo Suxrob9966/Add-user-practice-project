@@ -9,16 +9,19 @@ const AddUsers = (props)=> {
     const [enteredAge, setEnteredAge] = useState('');
 
     const usernameChangeHandler = (event) => {
-        setEnteredName(event.target.value);
+            setEnteredName(event.target.value);
     };
     
     const ageInputChangeHandler = (event) => {
-        setEnteredAge(event.target.value);
+            setEnteredAge(event.target.value);
     };
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
 
+        if(enteredName === '' || enteredAge <=0){
+            alert("Empty field");
+        }else{
         const users = {
             id: Math.trunc(Math.random() * 10).toString(),
             fName: enteredName,
@@ -26,15 +29,18 @@ const AddUsers = (props)=> {
         };
 
         props.onSaveUserData(users);
+        setEnteredName('');
+        setEnteredAge('');
+    }
     };
 
     return (
     <Card className="input">
     <form onSubmit={formSubmitHandler}>
       <label>Username</label>
-      <input type="text" onChange={usernameChangeHandler} />
+      <input type="text" onChange={usernameChangeHandler} value={enteredName}/>
       <label>Age (years)</label>
-      <input type="number" onChange={ageInputChangeHandler} min = '0' />
+      <input type="number" onChange={ageInputChangeHandler} min = '0' value={enteredAge} />
     <Button type="submit">Add User</Button>
   </form>
   </Card>
