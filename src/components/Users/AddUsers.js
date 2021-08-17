@@ -25,13 +25,14 @@ const AddUsers = (props)=> {
         if(+enteredAge < 1){
             return;
         }
-        const users = {
-            id: Math.trunc(Math.random() * 10).toString(),
-            fName: enteredName,
-            age: +enteredAge,
-        }
+        // const users = {
+        //     id: Math.trunc(Math.random() * 10).toString(),
+        //     fName: enteredName,
+        //     age: +enteredAge,
+        // }
 
-        props.onSaveUserData(users);
+        // props.onSaveUserData(users);
+        props.onSaveUserData(enteredName, enteredAge);
         setEnteredName('');
         setEnteredAge('');
     };

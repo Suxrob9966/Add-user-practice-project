@@ -13,7 +13,7 @@ const UsersList = (props)=>{
           id={data.id}
         >
           {/* {`${data.fName} (${data.age})`} */}
-          {data.fName} ({data.age})
+          {data.name} ({data.age})
         </li>
       ))}
         </ul>

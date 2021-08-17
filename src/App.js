@@ -2,23 +2,26 @@ import React, {useState} from 'react';
 import AddUsers from './components/Users/AddUsers';
 import UsersList from './components/Users/UsersList';
 
-const dummyData = [
-  { id: 'i1',
-    fName: 'Sarah',
-    age: 22,
-  }
-];
+// NOTE: All commmented sections work together
+// const dummyData = [
+//   { id: 'i1',
+//     fName: 'Sarah',
+//     age: 22,
+//   }
+// ];
 
 
 
 function App() {
 
-  const [users, setUsers] = useState(dummyData);
+  // const [users, setUsers] = useState(dummyData);
+  const [users, setUsers] = useState([]);
 
-  const addUserHandler = (user) => {
+  // const addUserHandler = (user) => {
+  const addUserHandler = (uName, uAge) => {
     console.log("In app.js");
-    console.log(user);
-    setUsers((prevState) => [user, ...prevState]);
+    // console.log(user);
+    setUsers((prevState) => [...prevState, {name: uName, age: uAge, id: Math.random().toString()}]);
   };
 
   return (
