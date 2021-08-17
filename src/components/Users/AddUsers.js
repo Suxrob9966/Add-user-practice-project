@@ -19,19 +19,21 @@ const AddUsers = (props)=> {
     const formSubmitHandler = (event) => {
         event.preventDefault();
 
-        if(enteredName === '' || enteredAge <=0){
-            alert("Empty field");
-        }else{
+        if(enteredName.trim().length === 0 || enteredAge.trim().length === 0 ){
+            return;
+        }
+        if(+enteredAge < 1){
+            return;
+        }
         const users = {
             id: Math.trunc(Math.random() * 10).toString(),
             fName: enteredName,
             age: +enteredAge,
-        };
+        }
 
         props.onSaveUserData(users);
         setEnteredName('');
         setEnteredAge('');
-    }
     };
 
     return (

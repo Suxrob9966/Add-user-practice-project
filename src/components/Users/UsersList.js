@@ -1,9 +1,12 @@
 import React from 'react';
 import './UsersList.css';
+import Card from '../UI/Card';
 
 const UsersList = (props)=>{
 
- return (<ul className="user_list">
+ return (
+ <Card className = "users">
+    <ul>
       {props.items.map(data => (
         <li
           key = {data.id}
@@ -13,7 +16,8 @@ const UsersList = (props)=>{
           {data.fName} ({data.age})
         </li>
       ))}
-    </ul>
+        </ul>
+    </Card>
  )
 };
 
