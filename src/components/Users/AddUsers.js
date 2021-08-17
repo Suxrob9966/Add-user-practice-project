@@ -8,6 +8,7 @@ const AddUsers = (props)=> {
 
     const [enteredName, setEnteredName] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
+    const [error, setError] = useState();
 
     const usernameChangeHandler = (event) => {
             setEnteredName(event.target.value);
@@ -21,9 +22,17 @@ const AddUsers = (props)=> {
         event.preventDefault();
 
         if(enteredName.trim().length === 0 || enteredAge.trim().length === 0 ){
+            setError({
+                title: 'Invalid input',
+                message: 'Please enter valid name and age',
+            });
             return;
         }
         if(+enteredAge < 1){
+            setError({
+                title: 'Invalid age',
+                message: 'Please enter valid age (>0)',
+            });
             return;
         }
         // const users = {
@@ -38,16 +47,20 @@ const AddUsers = (props)=> {
         setEnteredAge('');
     };
 
+    const errorHandler = () => {
+        setError(null);
+    }
+
     return (
         <div>
-        <ErrorModal title="An error occured!" message="Something went wrong" />
+        {error && <ErrorModal title={error.title} message={error.message} onConfirm = {errorHandler}/>}
 
         <Card className="input">
         <form onSubmit={formSubmitHandler}>
       <label>Username</label>
       <input type="text" onChange={usernameChangeHandler} value={enteredName}/>
       <label>Age (years)</label>
-      <input type="number" onChange={ageInputChangeHandler} min = '0' value={enteredAge} />
+      <input type="number" onChange={ageInputChangeHandler} value={enteredAge} />
     <Button type="submit">Add User</Button>
   </form>
   </Card>
